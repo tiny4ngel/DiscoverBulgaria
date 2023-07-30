@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <div class="hero-wrap js-fullheight">
+        <video autoplay muted loop id="myVideo">
+            <source src="{% static 'images/bg_video.mp4' %}" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        {% if user.is_authenticated %}
+            <div class="container">
+
+                <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-7 ftco-animate">
+                        <span class="subheading">A journey through history</span>
+                        <h1 class="mb-4">Welcome, {{ user.profile.first_name }} to Discover Bulgaria</h1>
+                        <p class="caps">Explore Bulgaria's Rich Cultural Heritage</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+        {% else %}
+            <div class="container">
+
+                <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-7 ftco-animate">
+                        <span class="subheading">A journey through history</span>
+                        <h1 class="mb-4">Welcome to Discover Bulgaria, please register or log in!</h1>
+                        <p class="caps">Explore Bulgaria's Rich Cultural Heritage</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+{% endblock %}

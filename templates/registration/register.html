@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+    <div class="container-xxl bg-primary hero-header">
+        <div class="container px-lg-5">
+            <div class="row g-5 align-items-end">
+                <div class="col-lg-6 text-center text-lg-start" id="headtextbg">
+                    <h1 class="text-white mb-4 animated slideInDown">Register!</h1>
+                    <p class="text-white pb-3 animated slideInDown">
+                    <div id="formDesign" style="color: white">
+                        <form method="post" enctype="multipart/form-data" {% url 'register user' %}>
+                            <strong>{{ form.as_p }}</strong>
+                            <input class="btn submit" style="background: white" type="submit" value="Create Profile">
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

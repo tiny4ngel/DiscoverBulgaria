@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+
+    <section class="hero-wrap-3" style="background-image: url('../../static/images/bg_1.jpg'); margin-bottom: 50px;">
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                            class="fa fa-chevron-right"></i></a></span> <span>Landmarks <i
+                            class="fa fa-chevron-right"></i></span></p>
+                    <h1 class="mb-0 bread">Landmarks</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        {% for landmark in all_landmarks %}
+            {% if forloop.counter0|divisibleby:3 %}
+                <div class="row">
+            {% endif %}
+        <div class="col-md-4 ftco-animate">
+            <div class="project-wrap">
+                <a href="#" class="img" style="background-image: url({{ landmark.landmark_photo.url }});">
+                    <span class="price">{{ landmark.trip_time }}</span>
+                </a>
+                <div class="text p-4">
+                    <span class="days">Nature</span>
+                    <h3><a href="#">{{ landmark.title }}</a></h3>
+                    <p class="location"><span class="fa fa-map-marker"></span> {{ landmark.location }}</p>
+                    <button class="btn btn-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314
+                                 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542
+                                 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8
+                                 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1
+                                  .176-.17C12.72-3.042 23.333
+                                  4.867 8 15z"></path>
+                        </svg>
+                        Add to favourites
+                    </button>
+                    <button class="btn btn-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314
+                                 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542
+                                 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8
+                                 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1
+                                  .176-.17C12.72-3.042 23.333
+                                  4.867 8 15z"></path>
+                        </svg>
+                        Details
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 or forloop.last %}
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

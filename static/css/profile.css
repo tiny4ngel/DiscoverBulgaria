@@ -1,0 +1,18 @@
+.profile-head {
+    transform: translateY(5rem)
+}
+
+.cover {
+    background-image: url(../images/bg_5_overlay.jpg);
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+body {
+    min-height: 100vh;
+    overflow-x:hidden;
+}
+
+h4 {
+    color: white;
+}
