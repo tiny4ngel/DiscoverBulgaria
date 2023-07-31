@@ -39,6 +39,17 @@
                 </div>
                 <div class="px-4 py-3">
                     <h5 class="mb-0">Favourites</h5>
+                    {% if favorite_landmarks %}
+                        <ul>
+                            {% for fav_landmark in favorite_landmarks %}
+                                <li>
+                                    {{ fav_landmark.landmark.title }} - {{ fav_landmark.landmark.location }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No favorite landmarks yet.</p>
+                    {% endif %}
                     <div class="p-4 rounded shadow-sm bg-light">
 
                     </div>

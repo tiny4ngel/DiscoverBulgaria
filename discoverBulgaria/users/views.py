@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
+from discoverBulgaria.bulgaria.models import FavouriteLandmarks
 from discoverBulgaria.users.forms import UserRegistrationForm
 from discoverBulgaria.users.models import Profile
 
@@ -23,8 +24,10 @@ def register_user(request):
 
 @login_required
 def my_profile(request):
+    favorite_landmarks = FavouriteLandmarks.objects.filter(traveller=request.user)
     context = {
         'is_profile_page': True,
+        'favorite_landmarks': favorite_landmarks,
     }
     return render(request, 'pages/profile.html', context)
 

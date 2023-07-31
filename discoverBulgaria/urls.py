@@ -7,5 +7,5 @@ urlpatterns = [
     path('bulgaria/', include('discoverBulgaria.bulgaria.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('users/', include('discoverBulgaria.users.urls')),
-    path('', index_no_account, name='index no_account')
+    path('', index_no_account, name='index no_account'),
 ]
