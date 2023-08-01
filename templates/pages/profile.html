@@ -3,7 +3,7 @@
 {% block page_content %}
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <div class="row py-5 px-4">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-7 mx-auto">
             <div class="bg-white shadow rounded overflow-hidden">
                 <div class="px-4 pt-0 pb-4 cover">
                     <div class="media align-items-end profile-head">
@@ -38,17 +38,41 @@
                     </ul>
                 </div>
                 <div class="px-4 py-3">
-                    <h5 class="mb-0">Favourites</h5>
+                    <h5 class="mb-0" style="padding-bottom: 30px;">Favourite Landmarks</h5>
                     {% if favorite_landmarks %}
-                        <ul>
-                            {% for fav_landmark in favorite_landmarks %}
-                                <li>
-                                    {{ fav_landmark.landmark.title }} - {{ fav_landmark.landmark.location }}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>No favorite landmarks yet.</p>
+                        {% for landmark in favorite_landmarks %}
+                            {% if forloop.counter0|divisibleby:3 %}
+                                <div class="row">
+                            {% endif %}
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-wrap">
+                                <a href="#" class="img"
+                                   style="background-image: url({{ landmark.landmark.landmark_photo.url }});">
+                                    <span class="price">{{ landmark.landmark.trip_time }}</span>
+                                </a>
+                                <div class="text p-4">
+                                    <span class="days">Nature</span>
+                                    <h3><a href="#">{{ landmark.landmark.title }}</a></h3>
+                                    <p class="location"><span
+                                            class="fa fa-map-marker"></span> {{ landmark.landmark.location }}
+                                    </p>
+
+                                    <button class="btn btn-success">
+                                        <i class="fa-solid fa-bars"></i>
+                                        Details
+                                    </button>
+                                    <button class="btn btn-danger">
+                                            <i class="far fa-rectangle-xmark"></i>
+                                        Delete
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:3 or forloop.last %}
+                            </div>
+                        {% endif %}
+                        {% endfor %}
                     {% endif %}
                     <div class="p-4 rounded shadow-sm bg-light">
 

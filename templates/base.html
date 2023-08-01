@@ -2,133 +2,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Discover Bulgaria - A journey through history</title>
-	<link rel="icon" type="image/x-icon" href="/images/icon.png">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Discover Bulgaria - A journey through history</title>
+    <link rel="icon" type="image/x-icon" href="/images/icon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
-	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
-
-	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-	<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
-
-	<link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
-	<link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
-	<link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
-	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 </head>
 <body>
 {% if is_index_page %}
-        <style>
-            .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-                color: #fff;
-            }
-            .ftco-navbar-light .navbar-brand {
-                color: #fff;
-            }
-            .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
-                color: #4caf50;
-            }
-        </style>
-    {% else %}
-        <style>
-            .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-                color: #000;
-            }
-            .ftco-navbar-light .navbar-brand {
-                color: #000
-            }
-            .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
-                color: #4caf50;
-            }
-        </style>
-    {% endif %}
-{% if user.is_authenticated %}
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="{% url 'index no_account' %}">Discover Bulgaria<span>A journey through history</span></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+    <style>
+        .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+            color: #fff;
+        }
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item {% if is_index_page %}active{% endif %}"><a href="{% url 'index no_account' %}" class="nav-link">Home</a></li>
-					<li class="nav-item {% if is_dashboard_page %}active{% endif %}"><a href="{% url 'dashboard' %}" class="nav-link">Landmarks</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Historic Figures</a></li>
-                    <li class="nav-item {% if is_profile_page %}active{% endif %}"><a href="{% url 'my profile' %}" class="nav-link">My Profile</a></li>
-                    <li class="nav-item"><a href="{% url 'logout user' %}" class="nav-link">Log out</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+        .ftco-navbar-light .navbar-brand {
+            color: #fff;
+        }
+
+        .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
+            color: #4caf50;
+        }
+    </style>
 {% else %}
-    	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="{% url 'index no_account' %}">Discover Bulgaria<span>A journey through history</span></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
+    <style>
+        .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+            color: #000;
+        }
 
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a href="{% url 'index no_account' %}" class="nav-link">Home</a></li>
+        .ftco-navbar-light .navbar-brand {
+            color: #000
+        }
+
+        .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
+            color: #4caf50;
+        }
+    </style>
+{% endif %}
+{% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index no_account' %}">Discover
+                Bulgaria<span>A journey through history</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                    aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% if is_index_page %}active{% endif %}"><a href="{% url 'index no_account' %}"
+                                                                                    class="nav-link">Home</a></li>
+                    <li class="nav-item {% if is_dashboard_page %}active{% endif %}"><a href="{% url 'dashboard' %}"
+                                                                                        class="nav-link">Landmarks</a>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link">Historic Figures</a></li>
+                    <li class="nav-item {% if is_profile_page %}active{% endif %}"><a href="{% url 'my profile' %}"
+                                                                                      class="nav-link">My Profile</a>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'logout user' %}" class="nav-link">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% else %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index no_account' %}">Discover
+                Bulgaria<span>A journey through history</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                    aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="{% url 'index no_account' %}" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="{% url 'register user' %}" class="nav-link">Register</a></li>
                     <li class="nav-item"><a href="{% url 'login user' %}" class="nav-link">Log in</a></li>
 
-				</ul>
-			</div>
-		</div>
-	</nav>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endif %}
-    {% block page_content %}
-    {% endblock %}
+{% block page_content %}
+{% endblock %}
 
 
 
 
-		<footer class="ftco-footer ftco-no-pt" style="padding-bottom: 0;">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<p style="margin-top: 16px;">"Discover Bulgaria" is a web application that aims to provide users with a captivating journey through the history of Bulgaria. It showcases various historical landmarks, events, and figures, allowing users to explore and learn more about the rich cultural heritage of the country.</p>
-						</div>
-					</div>
-				</div>
-			</footer>
+<footer class="ftco-footer ftco-no-pt" style="padding-bottom: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p style="margin-top: 16px;">"Discover Bulgaria" is a web application that aims to provide users with a
+                    captivating journey through the history of Bulgaria. It showcases various historical landmarks,
+                    events, and figures, allowing users to explore and learn more about the rich cultural heritage of
+                    the country.</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00"/>
+    </svg>
+</div>
 
-			<!-- loader -->
-			<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/scrollax.min.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="{% static 'js/google-map.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
-			<script src="{% static 'js/jquery.min.js' %}"></script>
-			<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
-			<script src="{% static 'js/popper.min.js' %}"></script>
-			<script src="{% static 'js/bootstrap.min.js' %}"></script>
-			<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-			<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-			<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
-			<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-			<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-			<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
-			<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-			<script src="{% static 'js/scrollax.min.js' %}"></script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-			<script src="{% static 'js/google-map.js' %}"></script>
-			<script src="{% static 'js/main.js' %}"></script>
-
-		</body>
-		</html>
+</body>
+</html>
