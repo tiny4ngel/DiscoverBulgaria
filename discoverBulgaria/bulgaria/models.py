@@ -15,3 +15,6 @@ class Landmarks(models.Model):
 class FavouriteLandmarks(models.Model):
     traveller = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     landmark = models.ForeignKey(Landmarks, on_delete=models.CASCADE, default=None, null=True)
+
+    class Meta:
+        unique_together = ['traveller', 'landmark']

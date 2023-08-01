@@ -16,6 +16,13 @@
     </section>
 
     <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         {% for landmark in all_landmarks %}
             {% if forloop.counter0|divisibleby:3 %}
                 <div class="row">
