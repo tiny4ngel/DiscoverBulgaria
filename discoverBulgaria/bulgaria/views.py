@@ -20,14 +20,14 @@ def dashboard(request):
     return render(request, 'pages/landmarks.html', context)
 
 
-# def landmark_details(request, pk):
-#     landmark = Landmarks.objects.filter(pk=pk).get()
-#
-#     context = {
-#         'landmark': landmark,
-#         'pk': pk,
-#     }
-#     return render(request, '#', context)
+def landmark_details(request, pk):
+    landmark = Landmarks.objects.filter(pk=pk).get()
+    context = {
+        'landmark': landmark,
+        'pk': pk,
+        'is_details_page': True,
+    }
+    return render(request, 'pages/landmark_details.html', context)
 
 
 def add_landmark_to_favourites(request, pk):
@@ -55,8 +55,6 @@ def add_landmark_to_favourites(request, pk):
     }
 
     return render(request, 'pages/landmarks.html', context)
-
-
 
 
 def delete_landmark_from_favourites(request, pk):

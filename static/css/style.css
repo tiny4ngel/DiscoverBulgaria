@@ -386,6 +386,18 @@ hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
+.card-text{
+  color: black;
+}
+
+.centered-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
 
 #myVideo {
   position: fixed;
@@ -7012,7 +7024,7 @@ button.bg-dark:focus {
 
 .pb-5,
 .py-5 {
-  padding-bottom: 40rem !important; }
+  padding-bottom: 10rem !important; }
 
 .pl-5,
 .px-5 {
@@ -8628,8 +8640,8 @@ h1, h2, h3, h4, h5,
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
 
@@ -8708,6 +8720,7 @@ h1, h2, h3, h4, h5,
         position: absolute;
         top: 7em;
         left: 0; } }
+
 
 .icon-video {
   width: 80px;
