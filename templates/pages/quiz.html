@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block page_content %}
+
+    <h1>{{ figure.name }} Quiz</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <h3>{{ question.question_text }}</h3>
+
+            <!-- Display choices for each question -->
+            <ul>
+                {% for choice in question.choices.all %}
+                    <li>
+                        <input type="radio" name="question{{ question.id }}" value="{{ choice.choice_text }}">
+                        {{ choice.choice_text }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+
+        <!-- Display messages, if any -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock %}

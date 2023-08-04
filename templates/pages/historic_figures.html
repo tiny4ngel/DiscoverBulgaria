@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+
+    <section class="hero-wrap-3" style="background-image: url('../../static/images/bg_1.jpg'); margin-bottom: 50px;">
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                            class="fa fa-chevron-right"></i></a></span> <span>Historic Figures <i
+                            class="fa fa-chevron-right"></i></span></p>
+                    <h1 class="mb-0 bread">Historic figures</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% for figure in historic_figures_all %}
+            {% if forloop.counter0|divisibleby:3 %}
+                <div class="row">
+            {% endif %}
+        <div class="col-md-4 ftco-animate">
+            <div class="project-wrap">
+                <a href="#" class="img" style="background-image: url({{ figure.figure_photo.url }});">
+                </a>
+                <div class="text p-4">
+                    <span class="days">Historic figures</span>
+                    <h3><a href="#">{{ figure.name }}</a></h3>
+                    <p class="location"><span class="fa fa-map-marker"></span> {{ figure.lifespan }}</p>
+                    {#                    <form method="POST" action="{% # %}">#}
+                    {#                        <input type="hidden" name="traveller" value="{{ request.user.id }}"/>#}
+                    {#                        <input type="hidden" name="landmark" value="{{ landmark.pk }}"/>#}
+                    {#                        {% csrf_token %}#}
+                    <button type="submit" class="btn btn-success" style="margin-bottom: 5px;">
+                        <i class="fa-regular fa-heart"></i>
+                        Explore
+                    </button>
+                    {#                    </form>#}
+                    <a href="{% url 'historic_figure_unlock' figure.pk %}" class="btn btn-success">
+                        <i class="fa-solid fa-bars"></i>
+                        Unlock
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 or forloop.last %}
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

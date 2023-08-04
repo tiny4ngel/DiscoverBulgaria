@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from discoverBulgaria.bulgaria.forms import AddToFavouritesForm
-from discoverBulgaria.bulgaria.models import Landmarks, FavouriteLandmarks
+from discoverBulgaria.bulgaria.models import Landmarks, FavouriteLandmarks, HistoricFigure, Leaderboard
 
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -66,3 +66,79 @@ def delete_landmark_from_favourites(request, pk):
         messages.error(request, 'Error! Landmark not found in your favorites.')
 
     return HttpResponseRedirect(reverse('my profile'))
+
+
+def historic_figures(request):
+    historic_figures_all = HistoricFigure.objects.all()
+    context = {'historic_figures_all': historic_figures_all}
+    return render(request, 'pages/historic_figures.html', context)
+
+
+def leaderboard(request):
+    leaderboard_data = Leaderboard.objects.order_by('-points')
+
+    context = {
+        'leaderboard_data': leaderboard_data,
+    }
+
+    return render(request, 'pages/leaderboard.html', context)
+
+
+def historic_figure_explore(request, pk):
+    figure = get_object_or_404(HistoricFigure, pk=pk)
+    context = {
+        {'figure': figure},
+    }
+    return render(request, 'historic_figure_explore.html', context)
+
+
+from django.http import HttpResponseRedirect
+
+
+from django.http import HttpResponseRedirect
+
+# views.py
+# views.py
+# views.py
+def historic_figure_unlock(request, pk):
+    figure = get_object_or_404(HistoricFigure, pk=pk)
+
+    # Check if the user has already unlocked the historic figure
+    if request.user in figure.unlocked_by.all():
+        messages.warning(request, 'You have already unlocked this historic figure!')
+        return redirect('historic figures')
+
+    # Get all the quiz questions for this historic figure
+    questions = figure.quiz_questions.all()
+
+    context = {
+        'figure': figure,
+        'questions': questions,
+    }
+
+    if request.method == 'POST':
+        user_points = 0
+        for question in questions:
+            selected_answer = request.POST.get(f"question{question.id}")
+            correct_choice = question.choices.get(is_correct=True).choice_text
+            if selected_answer == correct_choice:
+                user_points += 10
+            else:
+                # If any answer is incorrect, display an error message and return to the quiz page
+                messages.error(request, f'Incorrect answer for "{question.question_text}". Try again.')
+                return render(request, 'pages/quiz.html', context)
+
+        # Update the leaderboard entry for the user
+        leaderboard_entry, created = Leaderboard.objects.get_or_create(user=request.user)
+        leaderboard_entry.points += user_points
+        leaderboard_entry.save()
+        figure.unlocked_by.add(request.user)
+
+        messages.success(request, 'Historic figure unlocked successfully!')
+        # Redirect to the leaderboard page or a page showing quiz results
+        return redirect('historic figures')
+
+    return render(request, 'pages/quiz.html', context)
+
+
+
