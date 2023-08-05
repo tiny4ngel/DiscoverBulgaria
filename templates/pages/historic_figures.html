@@ -15,6 +15,7 @@
         </div>
     </section>
 
+
     <div class="container">
         {% if messages %}
             <ul class="messages">
@@ -23,6 +24,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
+
         {% for figure in historic_figures_all %}
             {% if forloop.counter0|divisibleby:3 %}
                 <div class="row">
@@ -35,17 +37,12 @@
                     <span class="days">Historic figures</span>
                     <h3><a href="#">{{ figure.name }}</a></h3>
                     <p class="location"><span class="fa fa-map-marker"></span> {{ figure.lifespan }}</p>
-                    {#                    <form method="POST" action="{% # %}">#}
-                    {#                        <input type="hidden" name="traveller" value="{{ request.user.id }}"/>#}
-                    {#                        <input type="hidden" name="landmark" value="{{ landmark.pk }}"/>#}
-                    {#                        {% csrf_token %}#}
-                    <button type="submit" class="btn btn-success" style="margin-bottom: 5px;">
-                        <i class="fa-regular fa-heart"></i>
-                        Explore
-                    </button>
-                    {#                    </form>#}
-                    <a href="{% url 'historic_figure_unlock' figure.pk %}" class="btn btn-success">
+                    <a href="{% url 'historic_figure_explore' figure.pk %}" class="btn btn-success" style="margin-bottom: 5px;">
                         <i class="fa-solid fa-bars"></i>
+                        Details
+                    </a>
+                    <a href="{% url 'historic_figure_unlock' figure.pk %}" class="btn btn-success" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-unlock"></i>
                         Unlock
                     </a>
                 </div>
@@ -56,5 +53,6 @@
         {% endif %}
         {% endfor %}
     </div>
+
 
 {% endblock %}

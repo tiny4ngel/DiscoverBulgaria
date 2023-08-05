@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+
+
+    <section class="ftco-section ftco-about img"
+             style="background-image: url({{ landmark.cover_photo.url }});">
+        <div class="overlay"></div>
+        <div class="container py-md-5">
+            <div class="row py-md-5">
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-about ftco-no-pt img">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md-12 about-intro">
+                    <div class="row">
+                        <div class="col-md-6 d-flex align-items-stretch">
+                            <div class="img d-flex w-100 align-items-center justify-content-center"
+                                 style="height: 800px; background-image:url({{ figure.additional_photo.url }});)">
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-md-5 py-5">
+                            <div class="row justify-content-start pb-3">
+                                <div class="col-md-12 heading-section ftco-animate">
+                                    <span class="subheading">Historic Figures</span>
+                                    <h2 class="mb-4">{{ figure.name }}  {{ figure.lifespan }}</h2>
+                                    <p>{{ figure.biography }}</p>
+                                    <p>
+                                        <a href="{% url 'historic_figure_unlock' figure.pk %}"
+                                           class="btn btn-success" style="margin-bottom: 5px;">
+                                            <i class="fa-solid fa-unlock"></i>
+                                            Unlock
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {#    <section class="ftco-intro ftco-section ftco-no-pt">#}
+    {#        <div class="container">#}
+    {#            <div class="row row-cols-md-3 justify-content-center">#}
+    {#                <div class="col">#}
+    {#                    <div class="card text-center h-100">#}
+    {#                        <div class="card-body">#}
+    {#                            <i class="fa-solid fa-building-columns fa-3x" style="color: #45b548;"></i>#}
+    {#                            <h5 class="card-title">Architectural Features</h5>#}
+    {#                            <p class="card-text">{{ landmark.architectural_features }}</p>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <div class="col">#}
+    {#                    <div class="card text-center h-100">#}
+    {#                        <div class="card-body">#}
+    {#                            <i class="fa-solid fa-clipboard-user fa-3x" style="color: #45b548;"></i>#}
+    {#                            <h5 class="card-title">Visitor Information</h5>#}
+    {#                            <p class="card-text">{{ landmark.visitor_information }}#}
+    {#                            </p>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <div class="col">#}
+    {#                    <div class="card text-center h-100">#}
+    {#                        <div class="card-body">#}
+    {#                            <i class="fa-solid fa-person-walking-arrow-right fa-3x" style="color: #45b548;"></i>#}
+    {#                            <h5 class="card-title">Accessibility and Terrain</h5>#}
+    {#                            <p class="card-text">{{ landmark.accessibility }}</p>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+
+{% endblock %}

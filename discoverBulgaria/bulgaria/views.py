@@ -87,19 +87,11 @@ def leaderboard(request):
 def historic_figure_explore(request, pk):
     figure = get_object_or_404(HistoricFigure, pk=pk)
     context = {
-        {'figure': figure},
+        'figure': figure,
     }
-    return render(request, 'historic_figure_explore.html', context)
+    return render(request, 'pages/historic_figure_explore.html', context)
 
 
-from django.http import HttpResponseRedirect
-
-
-from django.http import HttpResponseRedirect
-
-# views.py
-# views.py
-# views.py
 def historic_figure_unlock(request, pk):
     figure = get_object_or_404(HistoricFigure, pk=pk)
 

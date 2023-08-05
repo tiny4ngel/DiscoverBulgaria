@@ -1,34 +1,52 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block page_content %}
 
-    <h1>{{ figure.name }} Quiz</h1>
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="col-md-14">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <img src="{{ figure.figure_photo.url }}" class="img-fluid rounded-left"
+                                 alt="{{ figure.name }}">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h1 class="card-title">{{ figure.name }} Quiz</h1>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for question in questions %}
+                                        <h3>{{ question.question_text }}</h3>
+                                        <ul class="list-unstyled">
+                                            {% for choice in question.choices.all %}
+                                                <li>
+                                                    <input type="radio" name="question{{ question.id }}"
+                                                           value="{{ choice.choice_text }}">
+                                                    {{ choice.choice_text }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endfor %}
 
-    <form method="post">
-        {% csrf_token %}
-        {% for question in questions %}
-            <h3>{{ question.question_text }}</h3>
 
-            <!-- Display choices for each question -->
-            <ul>
-                {% for choice in question.choices.all %}
-                    <li>
-                        <input type="radio" name="question{{ question.id }}" value="{{ choice.choice_text }}">
-                        {{ choice.choice_text }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endfor %}
 
-        <!-- Display messages, if any -->
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <button type="submit">Submit</button>
-    </form>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
