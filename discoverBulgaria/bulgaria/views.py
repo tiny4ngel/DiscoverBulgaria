@@ -70,7 +70,8 @@ def delete_landmark_from_favourites(request, pk):
 
 def historic_figures(request):
     historic_figures_all = HistoricFigure.objects.all()
-    context = {'historic_figures_all': historic_figures_all}
+    context = {'historic_figures_all': historic_figures_all,
+               'is_figures_page': True}
     return render(request, 'pages/historic_figures.html', context)
 
 

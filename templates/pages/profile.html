@@ -11,13 +11,15 @@
                             <div class="profile mr-3"><img
                                     src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" width="130"
                                     class="rounded mb-2 img-thumbnail">
-                                <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+                                <a href="{% url 'edit profile' pk=user.pk %}"
+                                   class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
                             </div>
                         {% else %}
                             <div class="profile mr-3"><img
                                     src="../../static/images/default_pfp.jpg" alt="Profile Picture" width="130"
                                     class="rounded mb-2 img-thumbnail">
-                                <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
+                                <a href="{% url 'edit profile' pk=user.pk %}"
+                                   class="btn btn-outline-dark btn-sm btn-block">Edit profile</a>
                             </div>
                         {% endif %}
                         <div class="media-body mb-5 text-white">
@@ -65,10 +67,10 @@
                                                 class="fa fa-map-marker"></span> {{ landmark.landmark.location }}
                                         </p>
 
-                                        <button class="btn btn-success">
+                                        <a href="{% url 'landmark details' pk=landmark.landmark.id %}" class="btn btn-success">
                                             <i class="fa-solid fa-bars"></i>
                                             Details
-                                        </button>
+                                        </a>
                                         <form method="POST" class="d-inline-block"
                                               action="{% url 'delete_landmark_from_favourites' pk=landmark.pk %}">
                                             {% csrf_token %}

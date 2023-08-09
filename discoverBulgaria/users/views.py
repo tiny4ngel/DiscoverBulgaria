@@ -4,11 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from django.views import generic
 from django.views.generic import CreateView
 
 from discoverBulgaria.bulgaria.models import FavouriteLandmarks
 from discoverBulgaria.users.forms import UserRegistrationForm
 from discoverBulgaria.users.models import Profile
+
+UserModel = get_user_model()
 
 
 def index_no_account(request):
@@ -19,7 +22,10 @@ def index_no_account(request):
 
 
 def register_user(request):
-    return render(request, 'registration/register.html')
+    context = {
+        'is_register_page': True
+    }
+    return render(request, 'registration/register.html', context)
 
 
 @login_required
@@ -53,6 +59,9 @@ class UserRegistrationView(CreateView):
 
 
 def login_user(request):
+    context = {
+        'is_login': True
+    }
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -65,4 +74,11 @@ def login_user(request):
             return redirect('register user')
 
     else:
-        return render(request, 'registration/login.html')
+        return render(request, 'registration/login.html', context)
+
+
+class EditProfileView(generic.UpdateView):
+    model = Profile
+    template_name = 'pages/edit_profile.html'
+    fields = ['first_name', 'last_name', 'profile_picture']
+    success_url = reverse_lazy('my profile')

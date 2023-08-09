@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from discoverBulgaria.bulgaria.views import dashboard, add_landmark_to_favourites, delete_landmark_from_favourites, \
+from .views import dashboard, add_landmark_to_favourites, delete_landmark_from_favourites, \
     landmark_details, historic_figures, leaderboard, historic_figure_unlock, historic_figure_explore
 
 urlpatterns = (

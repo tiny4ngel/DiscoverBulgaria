@@ -5,7 +5,6 @@ import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -16,7 +15,6 @@ SECRET_KEY = 'django-insecure-j!wrjm&vk7@09y8jkxqkj5r^8$h3i18l9__)86157fx*%)9jx+
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -66,7 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'discoverBulgaria.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -80,7 +77,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -104,7 +100,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -115,7 +110,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -129,14 +123,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.AppUser'
 
-STATIC_URL = 'static/'
-
 STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
 
 cloudinary.config(
-  cloud_name="de0uehuus",
-  api_key="242389887197567",
-  api_secret="yu4O7SahIWl9ufHHNUU4NhWjF0g"
+    cloud_name="de0uehuus",
+    api_key="242389887197567",
+    api_secret="yu4O7SahIWl9ufHHNUU4NhWjF0g"
 )

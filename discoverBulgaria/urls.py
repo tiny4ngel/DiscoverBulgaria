@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from discoverBulgaria.users.views import index_no_account
+from .users.views import index_no_account
 
 urlpatterns = [
     path('admin/', admin.site.urls),

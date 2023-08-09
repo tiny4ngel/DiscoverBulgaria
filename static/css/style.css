@@ -12071,9 +12071,11 @@ h1, h2, h3, h4, h5,
 }
 
 .hero-wrap .overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     min-width: 100%;
     min-height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -12451,26 +12453,26 @@ h1, h2, h3, h4, h5,
 }
 
 .btn.btn-primary {
-    background: #f15d30 !important;
-    border: 1px solid #f15d30 !important;
+    background: #4CAF50 !important;
+    border: 1px solid #4CAF50 !important;
     color: #fff !important;
 }
 
 .btn.btn-primary:hover {
-    border: 1px solid #f15d30;
+    border: 1px solid #4CAF50;
     background: transparent;
-    color: #f15d30;
+    color: #4CAF50;
 }
 
 .btn.btn-primary.btn-outline-primary {
-    border: 1px solid #f15d30;
+    border: 1px solid #4CAF50;
     background: transparent;
-    color: #f15d30;
+    color: #4CAF50;
 }
 
 .btn.btn-primary.btn-outline-primary:hover {
     border: 1px solid transparent;
-    background: #f15d30;
+    background: #4CAF50;
     color: #fff;
 }
 
@@ -12953,7 +12955,8 @@ textarea.form-control {
 }
 
 .ftco-no-pt {
-    padding-top: 0 !important;
+    padding-bottom: 50px;
+    padding-top: 50px;
 }
 
 .ftco-no-pb {
@@ -13216,7 +13219,7 @@ textarea.form-control {
     font-size: 30px;
     display: block;
     margin-bottom: 5px;
-    color: #f15d30;
+    color: #00BCD4;
     font-family: "Arizonia", cursive;
 }
 

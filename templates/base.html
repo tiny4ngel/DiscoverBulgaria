@@ -80,7 +80,8 @@
                     <li class="nav-item {% if is_dashboard_page %}active{% endif %}"><a href="{% url 'dashboard' %}"
                                                                                         class="nav-link">Landmarks</a>
                     </li>
-                    <li class="nav-item"><a href="{% url 'historic figures' %}" class="nav-link">Historic Figures</a></li>
+                    <li class="nav-item {% if is_figures_page %}active{% endif %}"><a href="{% url 'historic figures' %}" class="nav-link">Historic Figures</a>
+                    </li>
                     <li class="nav-item {% if is_profile_page %}active{% endif %}"><a href="{% url 'my profile' %}"
                                                                                       class="nav-link">My Profile</a>
                     </li>
@@ -101,9 +102,9 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="{% url 'index no_account' %}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="{% url 'register user' %}" class="nav-link">Register</a></li>
-                    <li class="nav-item"><a href="{% url 'login user' %}" class="nav-link">Log in</a></li>
+                    <li class="nav-item {% if is_index_page %}active{% endif %}"><a href="{% url 'index no_account' %}" class="nav-link">Home</a></li>
+                    <li class="nav-item{% if is_register_page %}active{% endif %}"><a href="{% url 'register user' %}" class="nav-link">Register</a></li>
+                    <li class="nav-item {% if is_login_page %}active{% endif %}"><a href="{% url 'login user' %}" class="nav-link">Log in</a></li>
 
                 </ul>
             </div>
@@ -114,11 +115,11 @@
 {% endblock %}
 
 
-<footer class="ftco-footer ftco-no-pt" style="padding-bottom: 0;">
+<footer class="ftco-footer ftco-no-pt">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <p style="margin-top: 16px;">"Discover Bulgaria" is a web application that aims to provide users with a
+                <p style="margin-top: 16px; background: white;">"Discover Bulgaria" is a web application that aims to provide users with a
                     captivating journey through the history of Bulgaria. It showcases various historical landmarks,
                     events, and figures, allowing users to explore and learn more about the rich cultural heritage of
                     the country.</p>

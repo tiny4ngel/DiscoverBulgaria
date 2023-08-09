@@ -53,3 +53,5 @@ class UserRegistrationForm(UserCreationForm):
             profile.save()
 
         return user
+
+

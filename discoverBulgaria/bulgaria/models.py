@@ -25,13 +25,13 @@ class FavouriteLandmarks(models.Model):
     class Meta:
         unique_together = ['traveller', 'landmark']
 
+
 class HistoricFigure(models.Model):
     name = models.CharField(max_length=100)
     lifespan = models.CharField(max_length=100)
     biography = models.TextField()
     figure_photo = CloudinaryField('figure_photo', null=True, blank=True)
     additional_photo = CloudinaryField('additional photo', null=True, blank=True)
-    unlock_quiz_url = models.URLField()
     unlocked_by = models.ManyToManyField(UserModel, blank=True)
 
 
@@ -44,8 +44,8 @@ class QuizQuestion(models.Model):
     historic_figure = models.ForeignKey(HistoricFigure, on_delete=models.CASCADE, related_name='quiz_questions')
     question_text = models.CharField(max_length=255)
 
+
 class Choice(models.Model):
     question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE, related_name='choices')
     choice_text = models.CharField(max_length=100)
     is_correct = models.BooleanField(default=False)
-
