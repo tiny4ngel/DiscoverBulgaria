@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import CreateView
@@ -45,7 +44,6 @@ def logout_user(request):
 
 
 class UserRegistrationView(CreateView):
-    # form_class=UserCreationForm
     form_class = UserRegistrationForm
     template_name = 'registration/register.html'
 

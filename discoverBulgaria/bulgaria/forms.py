@@ -1,5 +1,4 @@
 from django import forms
-
 from discoverBulgaria.bulgaria.models import FavouriteLandmarks
 
 

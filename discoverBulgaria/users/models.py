@@ -2,12 +2,9 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-from django.db.models import DO_NOTHING
-
 from discoverBulgaria.users.managers import AppUserManager
 
 
-# Create your models here.
 class AppUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         unique=True,
