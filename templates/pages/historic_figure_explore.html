@@ -2,9 +2,7 @@
 {% load static %}
 {% block page_content %}
 
-
-    <section class="ftco-section ftco-about img"
-             style="background-image: url({{ landmark.cover_photo.url }});">
+    <section class="ftco-section ftco-about img" style="background-image: url('{% static "images/flag_bg.jpg" %}');">
         <div class="overlay"></div>
         <div class="container py-md-5">
             <div class="row py-md-5">
@@ -17,16 +15,26 @@
             <div class="row d-flex">
                 <div class="col-md-12 about-intro">
                     <div class="row">
-                        <div class="col-md-6 d-flex align-items-stretch">
+                        <div class="col-md-5">
+                            <!-- Photo section -->
                             <div class="img d-flex w-100 align-items-center justify-content-center"
-                                 style="height: 800px; background-image:url({{ figure.additional_photo.url }});)">
+                                 style="height: 800px; background-image:url({{ figure.additional_photo.url }});">
                             </div>
+                            <!-- Quote section beneath the photo -->
+                            <blockquote class="blockquote mt-3">
+                                <p class="mb-0"><strong>{{ figure.quote }}</strong></p>
+                            </blockquote>
                         </div>
-                        <div class="col-md-6 pl-md-5 py-5">
+                        <div class="col-md-7 pl-md-5 py-5">
+                            <!-- Title and biography on the right -->
                             <div class="row justify-content-start pb-3">
                                 <div class="col-md-12 heading-section ftco-animate">
-                                    <span class="subheading">Historic Figures</span>
-                                    <h2 class="mb-4">{{ figure.name }}  {{ figure.lifespan }}</h2>
+                                    <span class="subheading" style="color: darkred;">Historic Figures</span>
+                                    <h2 class="mb-4">{{ figure.name }} {{ figure.lifespan }}</h2>
+                                </div>
+                            </div>
+                            <div class="row justify-content-start">
+                                <div class="col-md-12 heading-section ftco-animate">
                                     <p>{{ figure.biography }}</p>
                                     <p>
                                         <a href="{% url 'historic_figure_unlock' figure.pk %}"
@@ -43,4 +51,5 @@
             </div>
         </div>
     </section>
+
 {% endblock %}

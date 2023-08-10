@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block custom_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form_styles.css' %}">
+{% endblock %}
 
 {% block page_content %}
     <div class="container my-4">
-        <h1 class="mb-4">Leaderboard</h1>
+        <h1 class="form-title">Leaderboard</h1>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -17,7 +20,13 @@
                     {% for entry in leaderboard_data %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ entry.user.profile.first_name }} {{ entry.user.profile.last_name }}</td>
+                            <td>
+                                {% if entry.user.is_superuser %}
+                                    {{ entry.user.email }}
+                                {% else %}
+                                    {{ entry.user.profile.first_name }} {{ entry.user.profile.last_name }}
+                                {% endif %}
+                            </td>
                             <td>{{ entry.points }}</td>
                         </tr>
                     {% endfor %}

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
+{% block custom_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/historic_figures.css' %}">
+{% endblock %}
 {% block page_content %}
 
     <div class="container my-4">
@@ -12,14 +16,23 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-            <div class="col-md-14">
+
+            <div class="col-12 col-md-10">
                 <div class="card">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <img src="{{ figure.additional_photo.url }}" class="img-fluid rounded-left"
-                                 alt="{{ figure.name }}">
+                    <div class="row no-gutters align-items-stretch">
+
+                        <!-- Image for smaller screens -->
+                        <div class="col-12 d-md-none">
+                            <img src="{{ figure.additional_photo.url }}" class="img-fluid" alt="{{ figure.name }}">
                         </div>
-                        <div class="col-md-6">
+
+                        <!-- Image column for larger screens -->
+                        <div class="col-12 col-md-5 d-none d-md-flex flex-column quiz-image"
+                             style="background-image: url('{{ figure.additional_photo.url }}');">
+                        </div>
+
+                        <!-- Quiz column -->
+                        <div class="col-12 col-md-7">
                             <div class="card-body">
                                 <h1 class="card-title">{{ figure.name }} Quiz</h1>
                                 <form method="post">
@@ -36,9 +49,6 @@
                                             {% endfor %}
                                         </ul>
                                     {% endfor %}
-
-
-
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>

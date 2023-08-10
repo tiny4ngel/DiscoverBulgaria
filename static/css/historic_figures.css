@@ -1,0 +1,26 @@
+.row.align-items-stretch {
+    display: flex;
+    align-items: stretch;
+}
+
+.quiz-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 991px) {
+    .btn-lg {
+        margin-left: 90px;
+    }
+}
+
+@media (min-width: 992px) {
+    .btn-lg {
+        margin-left: 190px;
+    }
+}

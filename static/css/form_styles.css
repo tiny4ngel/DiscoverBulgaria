@@ -23,4 +23,7 @@ body {
 .custom-form label {
     color: white;
 }
+.table-bordered {
+            background-color: white;
+        }
 

@@ -35,6 +35,7 @@ class HistoricFigure(models.Model):
     biography = models.TextField()
     figure_photo = CloudinaryField('figure_photo', null=True, blank=True)
     additional_photo = CloudinaryField('additional photo', null=True, blank=True)
+    quote = models.TextField()
     unlocked_by = models.ManyToManyField(UserModel, blank=True)
 
     def __str__(self):

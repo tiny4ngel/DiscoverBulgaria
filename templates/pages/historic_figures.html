@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block custom_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/historic_figures.css' %}">
+{% endblock %}
 {% block page_content %}
 
-    <section class="hero-wrap-3" style="background-image: url('../../static/images/bg_1.jpg'); margin-bottom: 50px;">
+    <section class="hero-wrap-3" style="background-image: url('{% static "images/flag_bg.jpg" %}'); margin-bottom: 50px;">
         <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center" style="bottom: 450px;">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center"
+                 style="bottom: 450px;">
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'index no_account' %}">Home <i
                             class="fa fa-chevron-right"></i></a></span> <span>Historic Figures <i
@@ -24,6 +28,17 @@
             </ul>
         {% endif %}
 
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-8 text-center text-md-left">
+                <p class="lead">Unlocking historic figures rewards you with points, enhancing your learning experience
+                    and giving you an edge in our platform's community.</p>
+            </div>
+            <div class="col-md-4 text-center text-md-right">
+                <a href="{% url 'leaderboard' %}" class="btn btn-primary btn-lg">Leaderboard</a>
+            </div>
+        </div>
+
+
         <div class="row">
             {% for figure in historic_figures_all %}
                 <div class="col-md-4 ftco-animate">
@@ -33,10 +48,12 @@
                             <span class="days">Historic figures</span>
                             <h3><a href="#">{{ figure.name }}</a></h3>
                             <p class="location"><span class="fa fa-map-marker"></span> {{ figure.lifespan }}</p>
-                            <a href="{% url 'historic_figure_explore' figure.pk %}" class="btn btn-success" style="margin-bottom: 5px;">
+                            <a href="{% url 'historic_figure_explore' figure.pk %}" class="btn btn-success"
+                               style="margin-bottom: 5px;">
                                 <i class="fa-solid fa-bars"></i> Details
                             </a>
-                            <a href="{% url 'historic_figure_unlock' figure.pk %}" class="btn btn-success" style="margin-bottom: 5px;">
+                            <a href="{% url 'historic_figure_unlock' figure.pk %}" class="btn btn-success"
+                               style="margin-bottom: 5px;">
                                 <i class="fa-solid fa-unlock"></i> Unlock
                             </a>
                         </div>
@@ -47,7 +64,7 @@
                     <div class="row">
                 {% endif %}
             {% endfor %}
-        </div>
+            </div>
     </div>
 
 {% endblock %}
