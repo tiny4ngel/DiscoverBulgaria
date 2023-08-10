@@ -35,7 +35,7 @@
                         <div class="col-12 col-md-7">
                             <div class="card-body">
                                 <h1 class="card-title">{{ figure.name }} Quiz</h1>
-                                <form method="post">
+                                <form method="post" action="{% url 'process_historic_figure_quiz' figure.id %}">
                                     {% csrf_token %}
                                     {% for question in questions %}
                                         <h3>{{ question.question_text }}</h3>

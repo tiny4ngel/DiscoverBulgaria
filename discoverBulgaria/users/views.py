@@ -1,11 +1,11 @@
 from django.contrib import messages
-from django.contrib.auth import login, authenticate, get_user_model, logout
+from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic import CreateView, UpdateView
-
+from django.views.generic import CreateView
 from discoverBulgaria.bulgaria.forms import LandmarksForm, LandmarksEditForm, DeleteLandmark
 from discoverBulgaria.bulgaria.models import FavouriteLandmarks, Landmarks
 from discoverBulgaria.users.forms import UserRegistrationForm
@@ -15,6 +15,9 @@ UserModel = get_user_model()
 
 
 def index_no_account(request):
+    """
+    Renders the main index page.
+    """
     context = {
         'is_index_page': True
     }
@@ -22,42 +25,21 @@ def index_no_account(request):
 
 
 def register_user(request):
+    """
+    Renders the user registration page.
+    """
     context = {
         'is_register_page': True
     }
     return render(request, 'registration/register.html', context)
 
 
-@login_required
-def my_profile(request):
-    favorite_landmarks = FavouriteLandmarks.objects.filter(traveller=request.user)
-    context = {
-        'is_profile_page': True,
-        'favorite_landmarks': favorite_landmarks,
-    }
-    return render(request, 'pages/profile.html', context)
-
-
-def logout_user(request):
-    logout(request)
-    messages.success(request, 'You were successfully logged out!')
-    return redirect('index no_account')
-
-
-class UserRegistrationView(CreateView):
-    form_class = UserRegistrationForm
-    template_name = 'registration/register.html'
-
-    success_url = reverse_lazy('index no_account')
-
-    def form_valid(self, form):
-        result = super().form_valid(form)
-        login(self.request, self.object)
-        messages.success(self.request, 'Registration successful!')
-        return result
-
-
 def login_user(request):
+    """
+    Handles user login functionality.
+    If the method is POST, it tries to authenticate the user.
+    If the method is GET, it displays the login page.
+    """
     context = {
         'is_login': True
     }
@@ -76,7 +58,52 @@ def login_user(request):
         return render(request, 'registration/login.html', context)
 
 
+class UserLogoutView(LogoutView):
+    """
+    Logs out the user and redirects to the main index page.
+    Also, displays a success message upon logging out.
+    """
+    next_page = 'index no_account'
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, 'You were successfully logged out!')
+        return super().dispatch(request, *args, **kwargs)
+
+
+@login_required
+def my_profile(request):
+    """
+    Displays the logged-in user's profile page including their favorite landmarks.
+    """
+    favorite_landmarks = FavouriteLandmarks.objects.filter(traveller=request.user)
+    context = {
+        'is_profile_page': True,
+        'favorite_landmarks': favorite_landmarks,
+    }
+    return render(request, 'pages/profile.html', context)
+
+
+class UserRegistrationView(CreateView):
+    """
+    Handles the user registration process using a form.
+    Upon successful registration, logs in the user and redirects to the main index page.
+    """
+    form_class = UserRegistrationForm
+    template_name = 'registration/register.html'
+
+    success_url = reverse_lazy('index no_account')
+
+    def form_valid(self, form):
+        result = super().form_valid(form)
+        login(self.request, self.object)
+        messages.success(self.request, 'Registration successful!')
+        return result
+
+
 class EditProfileView(generic.UpdateView):
+    """
+    Allows the user to edit their profile details, such as first name, last name, and profile picture.
+    """
     model = Profile
     template_name = 'pages/edit_profile.html'
     fields = ['first_name', 'last_name', 'profile_picture']
@@ -84,6 +111,10 @@ class EditProfileView(generic.UpdateView):
 
 
 class AddLandmarkView(CreateView):
+    """
+    Allows staff to add a new landmark.
+    On successful addition, redirects to the dashboard with a success message.
+    """
     model = Landmarks
     form_class = LandmarksForm
     template_name = 'pages/add_landmark.html'
@@ -96,6 +127,9 @@ class AddLandmarkView(CreateView):
 
 
 def landmark_edit(request, pk):
+    """
+    Provides functionality for staff to edit details of a specific landmark.
+    """
     landmark = Landmarks.objects.filter(pk=pk).get()
     if request.method == 'GET':
         form = LandmarksEditForm(instance=landmark)
@@ -113,6 +147,9 @@ def landmark_edit(request, pk):
 
 
 def landmark_delete(request, pk):
+    """
+    Allows staff to delete a specific landmark.
+    """
     landmark = Landmarks.objects.filter(pk=pk).get()
     if request.method == 'GET':
         form = DeleteLandmark(instance=landmark)
