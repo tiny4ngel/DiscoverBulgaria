@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 custom-form">
+                <h2 class="form-title">Edit Landmark</h2>
+                <form method="post" enctype="multipart/form-data" action="{% url 'edit landmark' pk=landmark.pk %}" class="custom-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn custom-btn-primary">Edit Landmark</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

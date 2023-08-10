@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+    {% block custom_styles %}
+    {% endblock %}
 </head>
 <body>
 {% if is_index_page %}
@@ -63,7 +66,44 @@
         }
     </style>
 {% endif %}
-{% if user.is_authenticated %}
+{% if user.is_staff %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index no_account' %}">Discover
+                Bulgaria<span>A journey through history</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                    aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% if is_index_page %}active{% endif %}"><a href="{% url 'index no_account' %}"
+                                                                                    class="nav-link">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Staff
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'add landmark' %}">Add Landmark</a>
+                        </div>
+                    </li>
+                    <li class="nav-item {% if is_dashboard_page %}active{% endif %}"><a href="{% url 'dashboard' %}"
+                                                                                        class="nav-link">Landmarks</a>
+                    </li>
+                    <li class="nav-item {% if is_figures_page %}active{% endif %}"><a
+                            href="{% url 'historic figures' %}" class="nav-link">Historic Figures</a>
+                    </li>
+                    <li class="nav-item {% if is_profile_page %}active{% endif %}"><a href="{% url 'my profile' %}"
+                                                                                      class="nav-link">My Profile</a>
+                    </li>
+                    <li class="nav-item"><a href="{% url 'logout user' %}" class="nav-link">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% elif user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index no_account' %}">Discover
@@ -80,7 +120,8 @@
                     <li class="nav-item {% if is_dashboard_page %}active{% endif %}"><a href="{% url 'dashboard' %}"
                                                                                         class="nav-link">Landmarks</a>
                     </li>
-                    <li class="nav-item {% if is_figures_page %}active{% endif %}"><a href="{% url 'historic figures' %}" class="nav-link">Historic Figures</a>
+                    <li class="nav-item {% if is_figures_page %}active{% endif %}"><a
+                            href="{% url 'historic figures' %}" class="nav-link">Historic Figures</a>
                     </li>
                     <li class="nav-item {% if is_profile_page %}active{% endif %}"><a href="{% url 'my profile' %}"
                                                                                       class="nav-link">My Profile</a>
@@ -102,9 +143,12 @@
 
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item {% if is_index_page %}active{% endif %}"><a href="{% url 'index no_account' %}" class="nav-link">Home</a></li>
-                    <li class="nav-item{% if is_register_page %}active{% endif %}"><a href="{% url 'register user' %}" class="nav-link">Register</a></li>
-                    <li class="nav-item {% if is_login_page %}active{% endif %}"><a href="{% url 'login user' %}" class="nav-link">Log in</a></li>
+                    <li class="nav-item {% if is_index_page %}active{% endif %}"><a href="{% url 'index no_account' %}"
+                                                                                    class="nav-link">Home</a></li>
+                    <li class="nav-item{% if is_register_page %}active{% endif %}"><a href="{% url 'register user' %}"
+                                                                                      class="nav-link">Register</a></li>
+                    <li class="nav-item {% if is_login_page %}active{% endif %}"><a href="{% url 'login user' %}"
+                                                                                    class="nav-link">Log in</a></li>
 
                 </ul>
             </div>
@@ -119,10 +163,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                <p style="margin-top: 16px; background: white;">"Discover Bulgaria" is a web application that aims to provide users with a
+                <p style="margin-top: 16px; background: white;">"Discover Bulgaria" is a web application that aims to
+                    provide users with a
                     captivating journey through the history of Bulgaria. It showcases various historical landmarks,
                     events, and figures, allowing users to explore and learn more about the rich cultural heritage of
-                    the country.<br>2023 Discover Bulgaria - A journey through history. Python project designed for Softuni.</p>
+                    the country.<br>2023 Discover Bulgaria - A journey through history. Python project designed for
+                    Softuni.</p>
             </div>
         </div>
     </div>

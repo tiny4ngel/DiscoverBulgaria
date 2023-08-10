@@ -24,6 +24,16 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
+    def get_full_name(self):
+        try:
+            profile = self.profile
+            return f"{profile.first_name} {profile.last_name}"
+        except Profile.DoesNotExist:
+            return ""
+
+    def get_favorite_landmarks(self):
+        return ', '.join([fav.landmark.title for fav in self.favouritelandmarks_set.all()])
+
 
 class Profile(models.Model):
     NATIONALITY_CHOICES = [
@@ -40,5 +50,3 @@ class Profile(models.Model):
     nationality = models.CharField(max_length=2, choices=NATIONALITY_CHOICES)
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
     profile_picture = CloudinaryField('profile_picture', null=True, blank=True)
-
-

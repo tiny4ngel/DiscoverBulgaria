@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index_no_account, login_user, UserRegistrationView, logout_user, \
+from .views import index_no_account, register_user, login_user, UserRegistrationView, logout_user, \
     my_profile, EditProfileView
 
 urlpatterns = (

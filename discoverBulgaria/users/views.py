@@ -2,11 +2,12 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
-from discoverBulgaria.bulgaria.models import FavouriteLandmarks
+from discoverBulgaria.bulgaria.forms import LandmarksForm, LandmarksEditForm, DeleteLandmark
+from discoverBulgaria.bulgaria.models import FavouriteLandmarks, Landmarks
 from discoverBulgaria.users.forms import UserRegistrationForm
 from discoverBulgaria.users.models import Profile
 
@@ -80,3 +81,49 @@ class EditProfileView(generic.UpdateView):
     template_name = 'pages/edit_profile.html'
     fields = ['first_name', 'last_name', 'profile_picture']
     success_url = reverse_lazy('my profile')
+
+
+class AddLandmarkView(CreateView):
+    model = Landmarks
+    form_class = LandmarksForm
+    template_name = 'pages/add_landmark.html'
+    success_url = reverse_lazy('dashboard')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, f"Successfully created Landmark - {self.object.title}")
+        return response
+
+
+def landmark_edit(request, pk):
+    landmark = Landmarks.objects.filter(pk=pk).get()
+    if request.method == 'GET':
+        form = LandmarksEditForm(instance=landmark)
+    else:
+        form = LandmarksEditForm(request.POST, instance=landmark)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+
+    context = {
+        'form': form,
+        'landmark': landmark,
+    }
+    return render(request, 'pages/landmark_edit.html', context)
+
+
+def landmark_delete(request, pk):
+    landmark = Landmarks.objects.filter(pk=pk).get()
+    if request.method == 'GET':
+        form = DeleteLandmark(instance=landmark)
+    else:
+        form = DeleteLandmark(request.POST, instance=landmark)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+
+    context = {
+        'landmark': landmark,
+        'form': form,
+    }
+    return render(request, 'pages/landmarks.html', context)

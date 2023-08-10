@@ -1,0 +1,26 @@
+body {
+    background-color: #4CAF50;
+}
+
+
+.custom-btn-primary {
+    background-color: #00bcd4;
+    border-color: #00bcd4;
+    color: white;
+}
+
+.custom-form {
+    padding-bottom: 30px;
+}
+
+.form-title {
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.custom-form label {
+    color: white;
+}
+

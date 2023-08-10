@@ -2,6 +2,7 @@ from django.urls import include, path
 
 from .views import dashboard, add_landmark_to_favourites, delete_landmark_from_favourites, \
     landmark_details, historic_figures, leaderboard, historic_figure_unlock, historic_figure_explore
+from ..users.views import AddLandmarkView, landmark_edit, landmark_delete
 
 urlpatterns = (
     path('dashboard/', dashboard, name='dashboard'),
@@ -13,8 +14,9 @@ urlpatterns = (
     path('leaderboard/', leaderboard, name='leaderboard'),
     path('landmarks/<int:pk>/', include([
         path('details/', landmark_details, name='landmark details'),
-        # path('edit/', landmark_edit, name='landmark edit'),
-        # path('delete/', landmark_delete, name='landmark delete'),
-    ]))
+        path('edit/', landmark_edit, name='edit landmark'),
+        path('delete/', landmark_delete, name='landmark delete'),
+    ])),
+    path('add_landmark/', AddLandmarkView.as_view(), name='add landmark'),
 
 )
