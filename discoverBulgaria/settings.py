@@ -59,6 +59,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'discoverBulgaria.wsgi.application'
 
+DATABASE_URL = 'postgres://postgres-user:password@localhost:5432/mydatabase'
+
 # Configure the database using dj_database_url
 DATABASES = {
     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
