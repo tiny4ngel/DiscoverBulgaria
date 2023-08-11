@@ -1,34 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
-<div class="container-xxl hero-header" style="background: #4caf50; padding: 50px 0;">
-  <div class="container px-lg-5">
-    <div class="row g-5 align-items-end">
-      <div class="col-lg-6 text-center text-lg-start" id="headtextbg">
-        <h1 class="text-white mb-4 animated slideInDown">Log in!</h1>
-        <div class="mb-4"></div>
+    <div class="container-xxl hero-header" style="background: #4caf50; padding: 50px 0;">
+        <div class="container px-lg-5">
+            <div class="row g-5 align-items-end">
+                <div class="col-lg-6 text-center text-lg-start" id="headtextbg">
+                    <h1 class="text-white mb-4 animated slideInDown">Log in!</h1>
+                    <div class="mb-4"></div>
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    <div id="formDesign" style="color: #4caf50;">
+                        <form method="POST" action="{% url 'login user' %}">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email:</label>
+                                <label for="email"></label><input type="text" class="form-control" name="email"
+                                                                  id="email"
+                                                                  aria-describedby="emailHelp"
+                                                                  placeholder="Enter your email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password:</label>
+                                <label for="password"></label><input type="password" class="form-control"
+                                                                     name="password" id="password"
+                                                                     placeholder="Enter your password">
+                            </div>
+                            <br>
+                            <button type="submit" style="background: #00BCD4; margin-right: 400px;"
+                                    class="btn-lg btn-primary my-btn">Submit
+                            </button>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                </div>
 
-        <div id="formDesign" style="color: #4caf50;">
-          <form method="POST" action="{% url 'login user' %}">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-              <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                <div class="col-lg-6 text-center">
+                    <img src="../../static/images/bulgaria_vector.png" class="img-fluid"
+                         style="max-width: 100%; height: auto;">
+                </div>
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password:&nbsp;&nbsp;</label>
-              <input type="password" class="form-control" name="password" id="password">
-            </div>
-            <br>
-            <button type="submit" style="background: #00BCD4; margin-right: 400px;" class="btn-lg btn-primary my-btn">Submit</button>
-            {% csrf_token %}
-          </form>
         </div>
-      </div>
-
-      <div class="col-lg-6 text-center">
-        <img src="../../static/images/bulgaria_vector.png" class="img-fluid" style="max-width: 100%; height: auto;">
-      </div>
     </div>
-  </div>
-</div>
 {% endblock %}

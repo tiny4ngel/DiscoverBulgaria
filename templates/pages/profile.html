@@ -61,10 +61,10 @@
                                         <span class="price">{{ landmark.landmark.trip_time }}</span>
                                     </a>
                                     <div class="text p-4">
-                                        <span class="days">Nature</span>
+                                        <span class="days">Landmarks</span>
                                         <h3><a href="#">{{ landmark.landmark.title }}</a></h3>
                                         <p class="location"><span
-                                                class="fa fa-map-marker"></span> {{ landmark.landmark.location }}
+                                                class="fa-solid fa-location-dot"></span> {{ landmark.landmark.location }}
                                         </p>
 
                                         <a href="{% url 'landmark details' pk=landmark.landmark.id %}" class="btn btn-success">

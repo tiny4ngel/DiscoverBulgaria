@@ -52,7 +52,7 @@ def login_user(request):
             return redirect('index no_account')
         else:
             messages.success(request, "There was an error logging in, Try again...")
-            return redirect('register user')
+            return redirect('login user')
 
     else:
         return render(request, 'registration/login.html', context)

@@ -35,10 +35,9 @@
                         <span class="price">{{ landmark.trip_time }}</span>
                     </a>
                     <div class="text p-4">
-                        <span class="days">Nature</span>
+                        <span class="days">Landmarks</span>
                         <h3><a href="#">{{ landmark.title }}</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> {{ landmark.location }}</p>
-
+                        <p class="location"><span class="fa-solid fa-location-dot"></span> {{ landmark.location }}</p>
                         <a href="{% url 'edit landmark' pk=landmark.pk %}" class="btn btn-primary"
                            style="display: inline-block; margin-bottom: 5px; margin-right: 5px;">
                             <i class="fa-regular fa-pen-to-square"></i> Edit Landmark
@@ -96,9 +95,9 @@
                         <span class="price">{{ landmark.trip_time }}</span>
                     </a>
                     <div class="text p-4">
-                        <span class="days">Nature</span>
+                        <span class="days">Landmarks</span>
                         <h3><a href="#">{{ landmark.title }}</a></h3>
-                        <p class="location"><span class="fa fa-map-marker"></span> {{ landmark.location }}</p>
+                        <p class="location"><span class="fa-solid fa-location-dot"></span> {{ landmark.location }}</p>
                         <form method="POST" action="{% url 'add_landmark_to_favourites' pk=landmark.pk %}">
                             <input type="hidden" name="traveller" value="{{ request.user.id }}"/>
                             <input type="hidden" name="landmark" value="{{ landmark.pk }}"/>

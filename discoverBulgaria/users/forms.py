@@ -8,6 +8,26 @@ UserModel = get_user_model()
 
 
 class UserRegistrationForm(UserCreationForm):
+    """
+        A form for user registration.
+
+        Fields:
+            - email: Email address of the user.
+            - first_name: First name of the user.
+            - last_name: Last name of the user.
+            - nationality: Nationality of the user.
+            - profile_picture: Profile picture of the user.
+            - password1: First password field for user registration.
+            - password2: Second password field for user registration.
+
+        Methods:
+            - __init__: Initializes the form and sets custom CSS classes for password fields.
+            - save: Saves the user registration data and creates a user profile.
+
+        Meta:
+            - model: UserModel - the User model.
+            - fields: ('email',) - the fields to include in the form.
+        """
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -37,6 +57,13 @@ class UserRegistrationForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'form-control'
 
     def save(self, commit=True):
+        """
+            Save the user registration data and create a user profile.
+            Args:
+                commit (bool): If True, save the user and profile to the database.
+            Returns:
+                UserModel: The saved user instance.
+        """
         user = super().save(commit=commit)
 
         profile_picture = self.cleaned_data.get('profile_picture', None)
@@ -52,5 +79,3 @@ class UserRegistrationForm(UserCreationForm):
             profile.save()
 
         return user
-
-

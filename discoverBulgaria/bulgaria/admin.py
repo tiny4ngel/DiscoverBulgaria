@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.urls import reverse
 from django.utils.html import format_html
 
 from discoverBulgaria.bulgaria.models import Landmarks, FavouriteLandmarks, HistoricFigure, QuizQuestion, Choice, \
@@ -13,17 +12,17 @@ class LandmarksAdmin(admin.ModelAdmin):
 
 
 class FavouriteLandmarksAdmin(admin.ModelAdmin):
-    list_display = ('traveller_full_name', 'get_favorite_landmarks')
+    list_display = ('traveller_full_name', 'landmark_title')
 
     def traveller_full_name(self, obj):
         return obj.traveller.get_full_name()
 
     traveller_full_name.short_description = 'Traveler'
 
-    def get_favorite_landmarks(self, obj):
-        return obj.traveller.get_favorite_landmarks()
+    def landmark_title(self, obj):
+        return obj.landmark.title
 
-    get_favorite_landmarks.short_description = 'Favorite Landmarks'
+    landmark_title.short_description = 'Favorite Landmark'
 
 
 class HistoricFigureAdmin(admin.ModelAdmin):
