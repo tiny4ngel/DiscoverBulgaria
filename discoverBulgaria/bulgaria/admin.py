@@ -74,6 +74,7 @@ class LeaderboardAdmin(admin.ModelAdmin):
 
     def user_full_name(self, obj):
         return f"{obj.user.profile.first_name} {obj.user.profile.last_name}"
+
     user_full_name.short_description = 'User Full Name'
 
 
@@ -83,4 +84,3 @@ admin.site.register(HistoricFigure, HistoricFigureAdmin)
 admin.site.register(QuizQuestion, QuizQuestionAdmin)
 admin.site.register(Choice, ChoiceAdmin)
 admin.site.register(Leaderboard, LeaderboardAdmin)
-

@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block custom_styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/historic_figures.css' %}">
 {% endblock %}
-{% block page_content %}
 
+{% block page_content %}
     <div class="container my-4">
         <div class="row justify-content-center">
             {% if messages %}

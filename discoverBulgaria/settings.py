@@ -1,7 +1,6 @@
 from pathlib import Path
 import cloudinary
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-j!wrjm&vk7@09y8jkxqkj5r^8$h3i18l9__)86157fx*%)9jx+'

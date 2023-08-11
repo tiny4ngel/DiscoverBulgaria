@@ -10,14 +10,14 @@
 
 body {
     min-height: 100vh;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 h4 {
     color: white;
 }
 
-ul{
+ul {
     list-style-type: none;
     padding: 0;
 }

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block page_content %}
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <div class="row py-5 px-4">
@@ -67,7 +68,8 @@
                                                 class="fa-solid fa-location-dot"></span> {{ landmark.landmark.location }}
                                         </p>
 
-                                        <a href="{% url 'landmark details' pk=landmark.landmark.id %}" class="btn btn-success">
+                                        <a href="{% url 'landmark details' pk=landmark.landmark.id %}"
+                                           class="btn btn-success">
                                             <i class="fa-solid fa-bars"></i>
                                             Details
                                         </a>

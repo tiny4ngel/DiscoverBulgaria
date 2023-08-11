@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block custom_styles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/form_styles.css' %}">
 {% endblock %}
@@ -10,26 +11,26 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>User</th>
-                        <th>Points</th>
-                    </tr>
+                <tr>
+                    <th>Rank</th>
+                    <th>User</th>
+                    <th>Points</th>
+                </tr>
                 </thead>
                 <tbody>
-                    {% for entry in leaderboard_data %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>
-                                {% if entry.user.is_superuser %}
-                                    {{ entry.user.email }}
-                                {% else %}
-                                    {{ entry.user.profile.first_name }} {{ entry.user.profile.last_name }}
-                                {% endif %}
-                            </td>
-                            <td>{{ entry.points }}</td>
-                        </tr>
-                    {% endfor %}
+                {% for entry in leaderboard_data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            {% if entry.user.is_superuser %}
+                                {{ entry.user.email }}
+                            {% else %}
+                                {{ entry.user.profile.first_name }} {{ entry.user.profile.last_name }}
+                            {% endif %}
+                        </td>
+                        <td>{{ entry.points }}</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
