@@ -64,7 +64,7 @@ DATABASES = {
 
 # Static files settings
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Media settings
 MEDIA_URL = '/media/'
