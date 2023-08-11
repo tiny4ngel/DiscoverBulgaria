@@ -8,8 +8,8 @@ from django.views import generic
 from django.views.generic import CreateView
 from discoverBulgaria.bulgaria.forms import LandmarksForm, LandmarksEditForm, DeleteLandmark
 from discoverBulgaria.bulgaria.models import FavouriteLandmarks, Landmarks
-from discoverBulgaria.users.forms import UserRegistrationForm
-from discoverBulgaria.users.models import Profile
+from discoverBulgaria.users.forms import UserRegistrationForm, UserUploadsForm
+from discoverBulgaria.users.models import Profile, UserUploads
 
 UserModel = get_user_model()
 
@@ -75,10 +75,14 @@ def my_profile(request):
     """
     Displays the logged-in user's profile page including their favorite landmarks.
     """
+    uploads = UserUploads.objects.all()
+    picture_count = UserUploads.objects.count()
     favorite_landmarks = FavouriteLandmarks.objects.filter(traveller=request.user)
     context = {
         'is_profile_page': True,
         'favorite_landmarks': favorite_landmarks,
+        'uploads': uploads,
+        'picture_count': picture_count,
     }
     return render(request, 'pages/profile.html', context)
 
@@ -164,3 +168,20 @@ def landmark_delete(request, pk):
         'form': form,
     }
     return render(request, 'pages/landmarks.html', context)
+
+
+def upload_view(request):
+    if request.method == 'POST':
+        form = UserUploadsForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_uploads = form.save(commit=False)
+            user_uploads.user = request.user
+            user_uploads.save()
+            return redirect('my profile')
+    else:
+        form = UserUploadsForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'pages/upload_picture.html', context)

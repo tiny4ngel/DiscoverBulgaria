@@ -2,6 +2,8 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+
+from discoverBulgaria import settings
 from discoverBulgaria.users.managers import AppUserManager
 
 
@@ -78,3 +80,12 @@ class Profile(models.Model):
     nationality = models.CharField(max_length=2, choices=NATIONALITY_CHOICES)
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE, primary_key=True)
     profile_picture = CloudinaryField('profile_picture', null=True, blank=True)
+
+
+class UserUploads(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    picture = CloudinaryField('upload_picture', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
