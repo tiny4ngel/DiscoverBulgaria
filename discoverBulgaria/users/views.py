@@ -75,13 +75,14 @@ def my_profile(request):
     """
     Displays the logged-in user's profile page including their favorite landmarks.
     """
-    uploads = UserUploads.objects.all()
-    picture_count = UserUploads.objects.count()
+    user_uploads = UserUploads.objects.filter(user=request.user)
+    picture_count = user_uploads.count()
     favorite_landmarks = FavouriteLandmarks.objects.filter(traveller=request.user)
+
     context = {
         'is_profile_page': True,
         'favorite_landmarks': favorite_landmarks,
-        'uploads': uploads,
+        'uploads': user_uploads,
         'picture_count': picture_count,
     }
     return render(request, 'pages/profile.html', context)

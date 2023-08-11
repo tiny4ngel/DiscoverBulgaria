@@ -1,7 +1,9 @@
+
 from cloudinary.forms import CloudinaryFileField
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, get_user
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+
 from discoverBulgaria.users.models import Profile, UserUploads
 
 UserModel = get_user_model()
@@ -101,3 +103,5 @@ class UserUploadsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['picture'].label = 'Upload your photo'
+
+
