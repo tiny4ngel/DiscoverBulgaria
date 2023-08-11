@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.utils.html import format_html
 
-from discoverBulgaria.users.models import Profile, AppUser
+from discoverBulgaria.users.models import Profile, AppUser, UserUploads
 
 CustomUser = get_user_model()
 
@@ -45,5 +45,10 @@ class ProfileAdmin(admin.ModelAdmin):
     profile_picture_thumbnail.short_description = 'Profile Picture'
 
 
+class UserUploadsAdmin(admin.ModelAdmin):
+    list_display = ('user', 'title', 'picture')
+
+
 admin.site.register(AppUser, AppUserAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(UserUploads, UserUploadsAdmin)

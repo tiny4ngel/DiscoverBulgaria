@@ -17,7 +17,6 @@
                     </div>
                 </div>
             </div>
-            </div>
         {% else %}
             <div class="container">
                 <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
@@ -29,7 +28,7 @@
                 </div>
             </div>
         {% endif %}
-
+    </div>
 
     <section class="ftco-section ftco-about ftco-no-pt img" style="background: white;">
         <div class="container">
@@ -75,7 +74,8 @@
                                         encompasses diverse traditions, from traditional folk music
                                         and dance
                                         to vibrant festivals and culinary delights. The country's historical sites, such
-                                        as the
+                                        as
+                                        the
                                         Rila
                                         Monastery and the ancient city of Plovdiv, offer glimpses into Bulgaria's rich
                                         past. Today, Bulgaria's cultural heritage continues to thrive, celebrating its
@@ -86,7 +86,11 @@
                                         where ancient
                                         landmarks and modern attractions coexist harmoniously.
                                     </p>
-                                    <p><a href="#" class="btn btn-primary">Explore</a></p>
+                                    {% if user.is_authenticated %}
+                                        <p><a href="{% url 'dashboard' %}" class="btn btn-primary">Explore</a></p>
+                                    {% else %}
+                                        <p><a href="{% url 'register user' %}" class="btn btn-primary">Register</a></p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

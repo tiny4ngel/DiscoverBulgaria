@@ -83,6 +83,19 @@ class Profile(models.Model):
 
 
 class UserUploads(models.Model):
+    """
+        Model for user uploaded photos.
+
+        This model represents user-uploaded photos along with associated metadata.
+
+        Attributes:
+            user (ForeignKey): The user who uploaded the photo.
+            title (CharField): The title of the uploaded photo.
+            picture (CloudinaryField): The Cloudinary field storing the uploaded picture.
+
+        Methods:
+            __str__: Method to return a string representation of the model instance.
+        """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     picture = CloudinaryField('upload_picture', null=True, blank=True)

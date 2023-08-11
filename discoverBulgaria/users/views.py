@@ -171,6 +171,13 @@ def landmark_delete(request, pk):
 
 
 def upload_view(request):
+    """
+    View for uploading user photos.
+
+    This view handles the process of allowing users to upload photos along with a title.
+    If the request method is POST, the form is validated and the uploaded photo is associated with the user.
+    If the request method is GET, the form is displayed for the user to fill out.
+    """
     if request.method == 'POST':
         form = UserUploadsForm(request.POST, request.FILES)
         if form.is_valid():

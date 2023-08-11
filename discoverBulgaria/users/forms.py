@@ -82,6 +82,18 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserUploadsForm(forms.ModelForm):
+    """
+        A form for user uploads.
+
+        This form allows users to upload a photo along with a title for the photo.
+
+        Attributes:
+            model (Model): The model associated with the form.
+            fields (list): The fields from the model that will be included in the form.
+
+        Methods:
+            __init__: Constructor method for the form. Modifies the label for the 'picture' field.
+        """
     class Meta:
         model = UserUploads
         fields = ['title', 'picture']

@@ -51,15 +51,44 @@
                     {% endif %}
                     <div class="p-4 rounded shadow-sm bg-light">
                         {% if favorite_landmarks %}
-                            <div class="row">
-                                {% for landmark in favorite_landmarks %}
-                                    <div class="col-md-4 ftco-animate">
-                                        <div class="project-wrap">
-                                            <!-- ... (rest of your landmark display code) ... -->
-                                        </div>
+                            {% for landmark in favorite_landmarks %}
+                                {% if forloop.counter0|divisibleby:3 %}
+                                    <div class="row">
+                                {% endif %}
+                            <div class="col-md-4 ftco-animate">
+                                <div class="project-wrap">
+                                    <a href="#" class="img"
+                                       style="background-image: url({{ landmark.landmark.landmark_photo.url }});">
+                                        <span class="price">{{ landmark.landmark.trip_time }}</span>
+                                    </a>
+                                    <div class="text p-4">
+                                        <span class="days">Landmarks</span>
+                                        <h3><a href="#">{{ landmark.landmark.title }}</a></h3>
+                                        <p class="location"><span
+                                                class="fa-solid fa-location-dot"></span> {{ landmark.landmark.location }}
+                                        </p>
+
+                                        <a href="{% url 'landmark details' pk=landmark.landmark.id %}"
+                                           class="btn btn-success">
+                                            <i class="fa-solid fa-bars"></i>
+                                            Details
+                                        </a>
+                                        <form method="POST" class="d-inline-block"
+                                              action="{% url 'delete_landmark_from_favourites' pk=landmark.pk %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Are you sure you want to remove this from favourites?');">
+                                                <i class="fa-regular fa-trash-alt"></i>
+                                                Delete
+                                            </button>
+                                        </form>
                                     </div>
-                                {% endfor %}
+                                </div>
                             </div>
+                            {% if forloop.counter|divisibleby:3 or forloop.last %}
+                                </div>
+                            {% endif %}
+                            {% endfor %}
                         {% else %}
                             <p class="text-center">You haven't added any landmarks to favourites yet!</p>
                         {% endif %}
