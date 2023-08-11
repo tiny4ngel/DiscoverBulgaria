@@ -1,17 +1,13 @@
-import os
 from pathlib import Path
 import cloudinary
-import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = 'django-insecure-j!wrjm&vk7@09y8jkxqkj5r^8$h3i18l9__)86157fx*%)9jx+'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['discoverbulgaria.online', 'discoverBulgaria.herokuapp.com']
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,7 +32,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'discoverBulgaria.urls'
@@ -44,7 +39,8 @@ ROOT_URLCONF = 'discoverBulgaria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates']
+        ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -59,25 +55,54 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'discoverBulgaria.wsgi.application'
 
-DATABASE_URL = 'postgres://postgres-user:password@localhost:5432/mydatabase'
-
-# Configure the database using dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres-new",
+        "USER": "postgres-user",
+        "PASSWORD": "password",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
+    }
 }
 
-# Static files settings
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
-# Media settings
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
-# Set AUTH_USER_MODEL
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+STATIC_URL = 'static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 AUTH_USER_MODEL = 'users.AppUser'
 
-# Cloudinary configuration
+STATICFILES_DIRS = (
+    BASE_DIR / 'static',
+)
+
 cloudinary.config(
     cloud_name="de0uehuus",
     api_key="242389887197567",
