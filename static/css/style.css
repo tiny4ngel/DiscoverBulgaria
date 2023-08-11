@@ -5524,6 +5524,10 @@ input[type="button"].btn-block {
         margin-bottom: 0;
         margin-left: 15px;
     }
+
+    .pb-5, .py-5 {
+        padding-bottom: 0;
+    }
 }
 
 .card-group > .card {
@@ -5582,6 +5586,10 @@ input[type="button"].btn-block {
     .card-group > .card:not(:first-child) .card-footer {
         border-bottom-left-radius: 0;
     }
+
+    .pb-5, .py-5 {
+        padding-bottom: 0 !important;
+    }
 }
 
 .card-columns .card {
@@ -5601,6 +5609,10 @@ input[type="button"].btn-block {
     .card-columns .card {
         display: inline-block;
         width: 100%;
+    }
+
+    .pb-5, .py-5 {
+        padding-bottom: 0 !important;
     }
 }
 
@@ -11804,7 +11816,7 @@ h1, h2, h3, h4, h5,
 }
 
 .ftco-navbar-light .container {
-    width: 1110px;
+    max-width: 1110px;
     margin: 0 auto;
     padding: 0;
 }
@@ -11952,7 +11964,7 @@ h1, h2, h3, h4, h5,
 }
 
 .ftco-navbar-light.scrolled {
-    position: fixed;
+    position: sticky;
     right: 0;
     left: 0;
     top: 0;
@@ -11977,7 +11989,7 @@ h1, h2, h3, h4, h5,
     color: #fff !important;
     background: #f15d30;
     border: none !important;
-    padding-top: 0.5rem !important;
+    padding-top: 0.8rem !important;
     padding-bottom: .5rem !important;
     padding-left: 20px !important;
     padding-right: 20px !important;
@@ -12002,6 +12014,7 @@ h1, h2, h3, h4, h5,
         background: none;
         border-radius: 0px;
         margin-left: 0 !important;
+        position: sticky;
     }
 }
 

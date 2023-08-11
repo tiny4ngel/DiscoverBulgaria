@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block custom_styles %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 
 {% block page_content %}
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
     <div class="row py-5 px-4">
         <div class="col-md-7 mx-auto">
             <div class="bg-white shadow rounded overflow-hidden">
