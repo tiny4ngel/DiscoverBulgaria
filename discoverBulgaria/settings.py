@@ -11,6 +11,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['discoverbulgaria.online', 'discoverBulgaria.herokuapp.com']
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
